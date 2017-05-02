@@ -1,0 +1,39 @@
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Table Style</title>
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;"/>
+    <link rel="stylesheet" th:href="@{/css/table.css}" href="css/table.css" type="text/css"/>
+</head>
+
+<body>
+<div class="table-title">
+    <h3>Search result</h3>
+</div>
+<form th:action="@{/view}" th:method="get">
+<table class="table-fill">
+    <thead>
+    <tr>
+        <th class="text-left">ID</th>
+        <th class="text-left">Name</th>
+        <th class="text-left">PNC</th>
+        <th class="text-left">INC</th>
+        <th class="text-left">Birth Date</th>
+        <th class="text-left">Address</th>
+        <th class="text-left">Update Info</th>
+    </tr>
+    </thead>
+    <tbody class="table-hover">
+        <td class="text-left" th:text="${patient.id}">ID</td>
+        <td class="text-left" th:text="${patient.name}">Name</td>
+        <td class="text-left" th:text="${patient.pnc}">PNC</td>
+        <td class="text-left" th:text="${patient.inc}">INC</td>
+        <td class="text-left" th:text="${patient.birthDate}">BirthDate</td>
+        <td class="text-left" th:text="${patient.address}">Address</td>
+        <td><a th:href="@{/update(param=${patient.id})}">Update Info.</a></td>
+        <!--<input type="hidden" name="book" th:value="${book}"/>-->
+    </tbody>
+</table>
+</form>
+</body>
+</html>

@@ -67,10 +67,10 @@ public class Patient {
     public String getName() {
         return name;
     }
-    public String getPNC() {
+    public String getPnc() {
         return pnc;
     }
-    public String getINC() {
+    public String getInc() {
         return inc;
     }
     public Date getBirthDate() {
