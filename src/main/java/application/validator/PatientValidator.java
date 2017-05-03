@@ -3,6 +3,8 @@ package application.validator;
 import application.entity.Patient;
 import application.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,12 +12,15 @@ import java.util.List;
  * Created by Mihnea on 02/05/2017.
  */
 
+@Controller
 public class PatientValidator {
 
     @Autowired
     private PatientRepository patientRepository;
 
     private String pnc;
+
+    public PatientValidator(){}
 
     public PatientValidator(String pnc){
         this.pnc = pnc;

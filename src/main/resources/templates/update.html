@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit</title>
+    <link rel="stylesheet" th:href="@{/css/edit.css}" href="css/table.css" type="text/css"/>
+</head>
+<body>
+<div class="form-style-5">
+    <form th:action="@{/update}" th:method="get">
+        <fieldset>
+            <legend><span class="number">1</span> Patient Info</legend>
+            <input type="text" name="name" th:value="${patient.name}" placeholder="Name *" />
+            <input type="text" name="pnc" th:value="${patient.pnc}" placeholder="PNC *" readonly="readonly"/>
+            <input type="text" name="inc" th:value="${patient.inc}" placeholder="INC *" />
+            <input type="text" name="birthdate" th:value="${patient.birthDate}" placeholder="Birth date *" readonly="readonly" />
+            <input type="text" name="address" th:value="${patient.address}" placeholder="Address *"  />
+        </fieldset>
+    </form>
+    <form th:action="@{/update}" th:method="post">
+        <fieldset>
+            <legend><span class="number">2</span>Update info</legend>
+            <input type="text" name="name" th:value="${patient.name}" placeholder="Name *" />
+            <input type="text" name="pnc" th:value="${patient.pnc}" placeholder="PNC *" readonly="readonly"/>
+            <input type="text" name="inc" th:value="${patient.inc}" placeholder="INC *" />
+            <input type="text" name="birthdate" th:value="${patient.birthDate}" placeholder="Birth date *" readonly="readonly" />
+            <input type="text" name="address" th:value="${patient.address}" placeholder="Address *"  />
+            <input type="submit" value="Apply" />
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
