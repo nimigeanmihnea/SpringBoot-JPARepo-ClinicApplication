@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Mihnea on 02/05/2017.
@@ -14,9 +15,8 @@ import java.util.Date;
 
 @Repository
 public interface ConsultRepository extends JpaRepository<Consult, Long>{
-
-    Consult findByDoctor(Doctor doctor);
-    Consult findByPatient(Patient patient);
+    List<Consult> findByDoctorAndStartHourBetween(Doctor doctor, Date startHour, Date endHour);
+    List<Consult> findByPatient(Patient patient);
     Consult findByStartHour(Date startHour);
     Consult findByEndHour(Date endHour);
 }

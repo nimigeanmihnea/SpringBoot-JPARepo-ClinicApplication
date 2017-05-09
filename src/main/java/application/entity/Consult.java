@@ -30,6 +30,9 @@ public class Consult {
     @Column(name = "endHour", nullable = false)
     private Date endHour;
 
+    @Column(name = "details")
+    private String details;
+
     public Consult(){}
 
     public Consult(String name, Doctor doctor, Patient patient, Date startHour, Date endHour) {
@@ -77,6 +80,12 @@ public class Consult {
     public void setEndHour(Date endHour) {
         this.endHour = endHour;
     }
+    public String getDetails() {
+        return details;
+    }
+    public void setDetails(String details) {
+        this.details = details;
+    }
 
     @Override
     public String toString() {
@@ -89,4 +98,6 @@ public class Consult {
                 ", endHour=" + endHour +
                 '}';
     }
+
+
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hours</title>
+    <link rel="stylesheet" th:href="@{/css/add.css}" href="css/table.css" type="text/css"/>
+</head>
+<body>
+<div class="form-style-5">
+    <form th:action="@{/secretary/hours}" th:method="post">
+        <fieldset>
+            <legend><span class="number">2</span>Hours Info</legend>
+            <input type="date" name="date"/>
+            <input type="time" name="startHour" placeholder="HH:MM *"  required="required" min="08:00" max="16:45"/>
+            <input type="time" name="endHour" placeholder="HH:MM *"  required="required" min="08:15" max="17:00"/>
+            <input type="submit" value="Next" />
+        </fieldset>
+    </form>
+</div>
+<script src="js/edit.js"></script>
+</body>
+</html>

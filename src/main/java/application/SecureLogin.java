@@ -6,6 +6,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +30,8 @@ public class SecureLogin extends WebSecurityConfigurerAdapter {
         httpSecurity.authorizeRequests().antMatchers("/", "/resources/**", "/templates/**", "/static/**",
                 "/css/**", "/js/**").permitAll()
                 .antMatchers("/admin/*","/admin").hasRole("ADMIN")
+                .antMatchers("/secretary/*").hasRole("SECRETARY")
+                .antMatchers("/doctor/*").hasRole("DOCTOR")
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -38,6 +42,11 @@ public class SecureLogin extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().accessDeniedPage("/403");
     }
 
+    public PasswordEncoder passwordEncoder(){
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder;
+    }
+
     @RequestMapping("/logout")
     public ModelAndView logout(HttpSession session) {
         session.invalidate();
@@ -46,6 +55,7 @@ public class SecureLogin extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws  Exception{
-        auth.userDetailsService(this.userCredentialsService);
+        auth.userDetailsService(this.userCredentialsService)
+                .passwordEncoder(passwordEncoder());
     }
 }

@@ -2,7 +2,6 @@ package application.controller;
 
 import application.entity.Patient;
 import application.repository.PatientRepository;
-import application.validator.PatientValidator;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.websocket.server.PathParam;
-import java.text.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -25,15 +26,16 @@ public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/secretary/add", method = RequestMethod.GET)
     public String show(){
-        return "/add";
+        return "/secretary/add";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/secretary/add", method = RequestMethod.POST)
     public String add(HttpServletRequest request) throws ParseException {
-        DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        DateFormat format = new SimpleDateFormat("yyyy-M-dd");
         Date date = format.parse(request.getParameter("birthdate"));
+        System.out.println(date);
         Patient patient = new Patient(request.getParameter("name"), request.getParameter("PNC"), request.getParameter("INC"),
                 date, request.getParameter("address"));
         try{
@@ -49,11 +51,13 @@ public class PatientController {
         search = search.replaceAll("_", " ");
 
         Patient patient = patientRepository.findByPnc(search);
-        model.addAttribute("patient", patient);
-        return "/view";
+        if(patient != null) {
+            model.addAttribute("patient", patient);
+            return "/view";
+        }else return "redirect:/errorpage";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/secretary/update", method = RequestMethod.GET)
     public String updateInfo(@PathParam("param") String param, Model model){
 
         long id = Long.parseLong(param);
@@ -61,11 +65,11 @@ public class PatientController {
 
         if(patient != null){
             model.addAttribute("patient", patient);
-            return "/update";
+            return "/secretary/update";
         }else return "redirect:/errorpage";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/secretary/update", method = RequestMethod.POST)
     public String update(HttpServletRequest request){
         Patient patient = patientRepository.findByPnc(request.getParameter("pnc"));
 

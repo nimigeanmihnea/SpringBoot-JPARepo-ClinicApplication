@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit</title>
+    <link rel="stylesheet" th:href="@{/css/edit.css}" href="css/table.css" type="text/css"/>
+</head>
+<body>
+<div class="form-style-5">
+    <form th:action="@{/secretary/cupdate}" th:method="get">
+        <fieldset>
+            <legend><span class="number">1</span> Consultation Info</legend>
+            <input type="text" name="name" th:value="${consult.name}" placeholder="Name *" readonly="readonly"/>
+            <input type="text" name="sh" th:value="${consult.startHour}" placeholder="PNC *" readonly="readonly"/>
+            <input type="text" name="eh" th:value="${consult.endHour}" placeholder="INC *" readonly="readonly"/>
+        </fieldset>
+    </form>
+    <form th:action="@{/secretary/cupdate}" th:method="post">
+        <fieldset>
+            <legend><span class="number">2</span>Update info</legend>
+            <input type="date" name="date"/>
+            <input type="time" name="startHour" placeholder="HH:MM *"  required="required" min="08:00" max="16:45"/>
+            <input type="time" name="endHour" placeholder="HH:MM *"  required="required" min="08:15" max="17:00"/>
+            <input type="submit" value="Apply" />
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

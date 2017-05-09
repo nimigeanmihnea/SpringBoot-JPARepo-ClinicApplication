@@ -1,6 +1,9 @@
 package application.entity;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Mihnea on 02/05/2017.
@@ -23,15 +26,23 @@ public class Doctor {
     @Column(name = "speciality", nullable = false)
     private String speciality;
 
+    @Column(name = "startHour", nullable = false)
+    private Date startHour;
+
+    @Column(name = "endHour", nullable = false)
+    private Date endHour;
+
     @OneToOne
     private User user;
 
     public Doctor (){}
 
-    public Doctor(String name, String PNC, String speciality, User user) {
+    public Doctor(String name, String PNC, String speciality, Date startHour, Date endHour, User user) {
         this.name = name;
         this.pnc = PNC;
         this.speciality = speciality;
+        this.startHour = startHour;
+        this.endHour = endHour;
         this.user = user;
     }
 
@@ -65,15 +76,39 @@ public class Doctor {
     public void setUser(User user) {
         this.user = user;
     }
+    public String getPnc() {
+        return pnc;
+    }
+    public void setPnc(String pnc) {
+        this.pnc = pnc;
+    }
+    public String getStartHour() {
+        DateFormat format = new SimpleDateFormat("HH:mm");
+        return format.format(startHour);
+    }
+    public void setStartHour(Date startHour) {
+        this.startHour = startHour;
+    }
+    public String getEndHour() {
+        DateFormat format = new SimpleDateFormat("HH:mm");
+        return format.format(endHour);
+    }
+    public void setEndHour(Date endHour) {
+        this.endHour = endHour;
+    }
+    public Date getStart(){
+        return this.startHour;
+    }
+    public Date getEnd(){ return this.endHour; }
 
     @Override
     public String toString() {
-        return "Doctor{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", PNC='" + pnc + '\'' +
-                ", speciality='" + speciality + '\'' +
-                ", user=" + user +
-                '}';
+        return "Doctor " + name;
+                //"id=" + id +
+//                ", name='" + name + '\'' +
+//                ", PNC='" + pnc + '\'' +
+//                ", speciality='" + speciality + '\'' +
+//                ", user=" + user +
+//                '}';
     }
 }

@@ -1,0 +1,47 @@
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <title>Table Style</title>
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;"/>
+    <link rel="stylesheet" th:href="@{/css/table.css}" href="css/table.css" type="text/css"/>
+</head>
+
+<body>
+<div class="table-title">
+    <h3>Search result</h3>
+</div>
+<form th:action="@{/cview}" th:method="get">
+    <table class="table-fill">
+        <thead>
+        <tr>
+            <th class="text-left">ID</th>
+            <th class="text-left">Name</th>
+            <th class="text-left">Doctor</th>
+            <th class="text-left">Patient</th>
+            <th class="text-left">Start Date</th>
+            <th class="text-left">End Date</th>
+            <th sec:authorize="hasRole('ROLE_DOCTOR')" class="text-left">Details</th>
+            <th sec:authorize="hasRole('ROLE_DOCTOR')" class="text-left">Update Details</th>
+            <th sec:authorize="hasRole('ROLE_SECRETARY')" class="text-left">Update Info</th>
+            <th sec:authorize="hasRole('ROLE_SECRETARY')" class="text-left">Delete Info</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+        <tr th:each="consult:${consults}">
+            <td class="text-left" th:text="${consult.id}">ID</td>
+            <td class="text-left" th:text="${consult.name}">Name</td>
+            <td class="text-left" th:text="${consult.doctor}">Doctor</td>
+            <td class="text-left" th:text="${consult.patient}">Patient</td>
+            <td class="text-left" th:text="${consult.startHour}">Starr Hour</td>
+            <td class="text-left" th:text="${consult.endHour}">End Hour</td>
+            <td sec:authorize="hasRole('DOCTOR')" th:text="${consult.details}">Details</td>
+            <td sec:authorize="hasRole('ROLE_DOCTOR')"><a th:href="@{/doctor/details(param=${consult.id})}">Update Details.</a></td>
+            <td sec:authorize="hasRole('ROLE_SECRETARY')"><a th:href="@{/secretary/cupdate(param=${consult.id})}">Update Info.</a></td>
+            <td sec:authorize="hasRole('ROLE_SECRETARY')"><a th:href="@{/secretary/cdelete(param=${consult.id})}">Delete Info.</a></td>
+            <!--<input type="hidden" name="book" th:value="${book}"/>-->
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

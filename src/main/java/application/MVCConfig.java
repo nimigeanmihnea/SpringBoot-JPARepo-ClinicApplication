@@ -22,7 +22,17 @@ public class MVCConfig extends WebMvcConfigurerAdapter{
         registry.addViewController("/").setViewName("login");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/home").setViewName("home");
-        registry.addViewController("/add").setViewName("add");
+        registry.addViewController("/secretary/add").setViewName("secretary/add");
         registry.addViewController("/view").setViewName("view");
+        registry.addViewController("/secretary/patient").setViewName("secretary/patient");
+        registry.addViewController("/secretary/hours").setViewName("secretary/hours");
+        registry.addViewController("/secretary/doctor").setViewName("secretary/doctor");
+        registry.addViewController("/cview").setViewName("cview");
+        registry.addViewController("/secretary/cupdate").setViewName("secretary/cupdate");
+        registry.addViewController("/doctor/details").setViewName("doctor/details");
+        registry.addViewController("/admin/add").setViewName("admin/add");
+        registry.addViewController("/admin/doctor").setViewName("admin/doctor");
+        registry.addViewController("/errorpage").setViewName("errorpage");
+        registry.addViewController("/403").setViewName("403");
     }
 }

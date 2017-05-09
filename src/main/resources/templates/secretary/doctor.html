@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Doctor</title>
+    <link rel="stylesheet" th:href="@{/css/add.css}" href="css/table.css" type="text/css"/>
+</head>
+<body>
+<div class="form-style-5">
+    <form th:action="@{/secretary/doctor}" th:method="post">
+        <fieldset>
+            <legend><span class="number">3</span>Doctor Info</legend>
+            <input type="text" name="name" placeholder="Consultation name *" required="required"/>
+            <select name="doc">
+                <option>Select a doctor...</option>
+                <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"></option>
+            </select>
+            <input type="submit" value="Finish" />
+        </fieldset>
+    </form>
+</div>
+<script src="js/edit.js"></script>
+</body>
+</html>

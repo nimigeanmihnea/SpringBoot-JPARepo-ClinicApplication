@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -73,8 +75,9 @@ public class Patient {
     public String getInc() {
         return inc;
     }
-    public Date getBirthDate() {
-        return birthDate;
+    public String getBirthDate() {
+        DateFormat format = new SimpleDateFormat("dd/MM/YYYY");
+        return format.format(birthDate);
     }
     public String getAddress() {
         return address;
@@ -82,13 +85,13 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "Patient{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", PNC='" + pnc + '\'' +
-                ", INC='" + inc + '\'' +
-                ", birthDate=" + birthDate +
-                ", address='" + address + '\'' +
-                '}';
+        return "Patient " + name;
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", PNC='" + pnc + '\'' +
+//                ", INC='" + inc + '\'' +
+//                ", birthDate=" + birthDate +
+//                ", address='" + address + '\'' +
+//                '}';
     }
 }

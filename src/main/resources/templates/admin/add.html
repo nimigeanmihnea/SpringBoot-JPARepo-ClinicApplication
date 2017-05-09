@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Patient</title>
+    <link rel="stylesheet" th:href="@{/css/add.css}" href="css/table.css" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/select.css}" href="css/table.css" type="text/css"/>
+</head>
+<body>
+<div class="form-style-5">
+    <form th:action="@{/admin/add}" th:method="post">
+        <fieldset>
+            <legend><span class="number">1</span>User Role</legend>
+            <select name="role">
+                <option>Select a role...</option>
+                <option value="doc">Doctor</option>
+                <option value="sec">Secretary</option>
+                <option value="admin">Admin</option>
+            </select>
+            <input type="submit" value="Next" />
+        </fieldset>
+    </form>
+</div>
+<script src="js/edit.js"></script>
+</body>
+</html>

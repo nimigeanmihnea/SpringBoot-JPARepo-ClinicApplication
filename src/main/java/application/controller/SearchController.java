@@ -21,6 +21,8 @@ public class SearchController {
     @RequestMapping(value = "/home", method = RequestMethod.POST)
     public String search(HttpServletRequest request){
         String search = request.getParameter("search");
-        return "redirect:/view?search="+search.replaceAll(" ","_");
+        if(request.getParameter("option").equals("patient"))
+            return "redirect:/view?search="+search.replaceAll(" ","_");
+        else return "redirect:/cview?search="+search.replaceAll(" ","_");
     }
 }

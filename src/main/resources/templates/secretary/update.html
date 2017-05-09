@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="form-style-5">
-    <form th:action="@{/update}" th:method="get">
+    <form th:action="@{/secretary/update}" th:method="get">
         <fieldset>
             <legend><span class="number">1</span> Patient Info</legend>
             <input type="text" name="name" th:value="${patient.name}" placeholder="Name *" />
@@ -17,7 +17,7 @@
             <input type="text" name="address" th:value="${patient.address}" placeholder="Address *"  />
         </fieldset>
     </form>
-    <form th:action="@{/update}" th:method="post">
+    <form th:action="@{/secretary/update}" th:method="post">
         <fieldset>
             <legend><span class="number">2</span>Update info</legend>
             <input type="text" name="name" th:value="${patient.name}" placeholder="Name *" />

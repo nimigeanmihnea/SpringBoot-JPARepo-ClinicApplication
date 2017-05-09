@@ -1,4 +1,4 @@
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="utf-8" />
     <title>Table Style</title>
@@ -20,7 +20,7 @@
         <th class="text-left">INC</th>
         <th class="text-left">Birth Date</th>
         <th class="text-left">Address</th>
-        <th class="text-left">Update Info</th>
+        <th sec:authorize="hasRole('ROLE_SECRETARY')" class="text-left">Update Info</th>
     </tr>
     </thead>
     <tbody class="table-hover">
@@ -30,7 +30,7 @@
         <td class="text-left" th:text="${patient.inc}">INC</td>
         <td class="text-left" th:text="${patient.birthDate}">BirthDate</td>
         <td class="text-left" th:text="${patient.address}">Address</td>
-        <td><a th:href="@{/update(param=${patient.id})}">Update Info.</a></td>
+        <td sec:authorize="hasRole('ROLE_SECRETARY')"><a th:href="@{/secretary/update(param=${patient.id})}">Update Info.</a></td>
         <!--<input type="hidden" name="book" th:value="${book}"/>-->
     </tbody>
 </table>

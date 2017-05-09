@@ -15,24 +15,31 @@
 
         <ul id="nav">
             <li><a th:href="@{/home}" class="current">Home</a></li>
-            <li><a th:href="@{/add}">Add patient</a></li>
-
-            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Admin</a></li>
+            <li sec:authorize="hasRole('ROLE_SECRETARY')"><a th:href="@{/secretary/add}">Add patient</a></li>
+            <li sec:authorize="hasRole('ROLE_SECRETARY')"><a th:href="@{/secretary/patient}">Add consultation</a></li>
+            <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/add}">Add user</a></li>
         </ul>
+
     </div>
+
     <div class="column">
         <div id="sb-search" class="sb-search">
             <form th:action="@{/home}" th:method="post">
-                <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search"/>
+                <input class="sb-search-input" placeholder="Search by PNC..." type="text" value="" name="search" id="search" pattern="[12][0-9]{12}"/>
                 <input class="sb-search-submit" type="submit" value=""/>
                 <span class="sb-icon-search"></span>
+                <select name="option">
+                    <option value="patient">Patient</option>
+                    <option value="consult">Consultation</option>
+                    <option sec:authorize="hasRole('ROLE_ADMIN')" value="user">User</option>
+                </select>
             </form>
         </div>
     </div>
 </div>
 
 <footer>
-    <h2>Book Store</h2>
+    <h2>Clinic</h2>
     <a th:href="@{/logout}" class="stuts">Everything done? <span>Logout</span></a>
 </footer>
 <script src="js/classie.js"></script>

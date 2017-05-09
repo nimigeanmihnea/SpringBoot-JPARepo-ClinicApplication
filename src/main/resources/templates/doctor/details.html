@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit</title>
+    <link rel="stylesheet" th:href="@{/css/edit.css}" href="css/table.css" type="text/css"/>
+</head>
+<body>
+<div class="form-style-5">
+    <form th:action="@{/doctor/details}" th:method="get">
+        <fieldset>
+            <legend><span class="number">1</span> Consultation Info</legend>
+            <input type="text" name="name" th:value="${consult.name}" placeholder="Name *" readonly="readonly"/>
+            <input type="text" name="patient" th:value="${consult.patient}" placeholder="Patient *" readonly="readonly"/>
+            <input type="text" name="inc" th:value="${consult.details}" placeholder="Details *" readonly="readonly" />
+        </fieldset>
+    </form>
+    <form th:action="@{/doctor/details}" th:method="post">
+        <fieldset>
+            <legend><span class="number">2</span>Update info</legend>
+            <input type="text" name="details" th:value="${consult.details}" placeholder="Details *" />
+            <input type="submit" value="Apply" />
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
