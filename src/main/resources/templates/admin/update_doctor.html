@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Update Doctor</title>
+    <link rel="stylesheet" th:href="@{/css/edit.css}" href="css/table.css" type="text/css"/>
+</head>
+<body>
+<div class="form-style-5">
+    <form th:action="@{/admin/update_doctor}" th:method="get">
+        <fieldset>
+            <legend><span class="number">1</span> Doctor Info</legend>
+            <input type="text" name="name" th:value="${doctor.name}" placeholder="Name *" readonly="readonly"/>
+            <input type="text" name="pnc" th:value="${doctor.pnc}" placeholder="PNC *" readonly="readonly"/>
+            <input type="text" name="inc" th:value="${doctor.speciality}" placeholder="INC *" />
+            <input type="text" name="birthdate" th:value="${doctor.startHour}" placeholder="Birth date *" readonly="readonly" />
+            <input type="text" name="address" th:value="${doctor.endHour}" placeholder="Address *" readonly="readonly" />
+        </fieldset>
+    </form>
+    <form th:action="@{/admin/update_doctor}" th:method="post">
+        <fieldset>
+            <legend><span class="number">2</span>Update info</legend>
+            <input type="text" name="name" th:value="${doctor.name}" placeholder="Name *" required="required"/>
+            <input type="text" name="pnc" th:value="${doctor.pnc}" placeholder="PNC *" required="required" pattern="[12][0-9]{12}"/>
+            <input type="text" name="spec" th:value="${doctor.speciality}" placeholder="Speciality *" required="required"/>
+            <input type="time" name="startHour" th:value="${doctor.startHour}" placeholder="Start Hour *"  required="required"/>
+            <input type="time" name="endHour" th:value="${doctor.endHour}" placeholder="End Hour *" required="required" />
+            <input type="submit" value="Apply" />
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

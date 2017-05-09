@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Update Admin</title>
+    <link rel="stylesheet" th:href="@{/css/edit.css}" href="css/table.css" type="text/css"/>
+</head>
+<body>
+<div class="form-style-5">
+    <form th:action="@{/admin/update_admin}" th:method="get">
+        <fieldset>
+            <legend><span class="number">1</span>Secretary Info</legend>
+            <input type="text" name="name" th:value="${user.username}" placeholder="Name *" readonly="readonly"/>
+        </fieldset>
+    </form>
+    <form th:action="@{/admin/update_admin}" th:method="post">
+        <fieldset>
+            <legend><span class="number">2</span>Update info</legend>
+            <input type="text" name="name" th:value="${user.username}" placeholder="Name *" required="required"/>
+            <input type="submit" value="Apply" />
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

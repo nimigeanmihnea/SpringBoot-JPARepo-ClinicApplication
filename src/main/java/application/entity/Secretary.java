@@ -43,7 +43,7 @@ public class Secretary {
     public void setName(String name) {
         this.name = name;
     }
-    public String getPNC() {
+    public String getPnc() {
         return pnc;
     }
     public void setPNC(String PNC) {
@@ -52,11 +52,7 @@ public class Secretary {
 
     @Override
     public String toString() {
-        return "Secretary{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", PNC='" + pnc + '\'' +
-                ", user=" + user +
-                '}';
+        return "Secretary " +name;
+
     }
 }

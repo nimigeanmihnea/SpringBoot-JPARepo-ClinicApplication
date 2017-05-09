@@ -1,0 +1,35 @@
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <title>Users View</title>
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;"/>
+    <link rel="stylesheet" th:href="@{/css/table.css}" href="css/table.css" type="text/css"/>
+</head>
+
+<body>
+<div class="table-title">
+    <h3>Search result</h3>
+</div>
+<form th:action="@{/admin/view}" th:method="get">
+    <table class="table-fill">
+        <thead>
+        <tr>
+            <th class="text-left">ID</th>
+            <th class="text-left">Username</th>
+            <th class="text-left">Role</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')" class="text-left">Update Info</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')" class="text-left">Delete Info</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+        <td class="text-left" th:text="${user.id}">ID</td>
+        <td class="text-left" th:text="${user.username}">Username</td>
+        <td class="text-left" th:text="${user.role}">Role</td>
+        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/update(param=${user.id})}">Update Info.</a></td>
+        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/delete(param=${user.id})}">Delete Info.</a></td>
+        <!--<input type="hidden" name="book" th:value="${book}"/>-->
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package application.repository;
 
 import application.entity.Secretary;
+import application.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface SecretaryRepository extends JpaRepository<Secretary, Long>{
 
     Secretary findByPnc(String PNC);
+    Secretary findByUser(User user);
 }

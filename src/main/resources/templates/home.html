@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="utf-8" />
-    <title>Book Store</title>
+    <title>Home</title>
 
     <link rel="stylesheet" th:href="@{/css/home.css}" href="css/layout.css" type="text/css" media="screen"/>
     <link rel="stylesheet" th:href="@{/css/menu.css}" href="css/menu.css" type="text/css" media="screen"/>
@@ -25,7 +25,7 @@
     <div class="column">
         <div id="sb-search" class="sb-search">
             <form th:action="@{/home}" th:method="post">
-                <input class="sb-search-input" placeholder="Search by PNC..." type="text" value="" name="search" id="search" pattern="[12][0-9]{12}"/>
+                <input class="sb-search-input" placeholder="Search..." type="text" value="" name="search" id="search"/>
                 <input class="sb-search-submit" type="submit" value=""/>
                 <span class="sb-icon-search"></span>
                 <select name="option">

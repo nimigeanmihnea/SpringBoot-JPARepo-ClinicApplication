@@ -23,6 +23,10 @@ public class SearchController {
         String search = request.getParameter("search");
         if(request.getParameter("option").equals("patient"))
             return "redirect:/view?search="+search.replaceAll(" ","_");
-        else return "redirect:/cview?search="+search.replaceAll(" ","_");
+        else {
+            if(request.getParameter("option").equals("consult"))
+                return "redirect:/cview?search="+search.replaceAll(" ","_");
+            else return "redirect:/admin/view?search="+search.replaceAll(" ","_");
+        }
     }
 }

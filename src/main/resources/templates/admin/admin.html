@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Admin</title>
+    <link rel="stylesheet" th:href="@{/css/add.css}" href="css/table.css" type="text/css"/>
+</head>
+<body>
+<div class="form-style-5">
+    <form th:action="@{/admin/admin}" th:method="post">
+        <fieldset>
+            <legend><span class="number">1</span>User Info </legend>
+            <input type="text" name="username" placeholder="Username *" required="required"/>
+            <input type="text" name="password" placeholder="Password *" required="required"/>
+            <input type="submit" value="Apply" />
+        </fieldset>
+    </form>
+</div>
+<script src="js/edit.js"></script>
+</body>
+</html>
