@@ -41,9 +41,12 @@
 <footer>
     <h2>Clinic</h2>
     <a th:href="@{/logout}" class="stuts">Everything done? <span>Logout</span></a>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </footer>
+<script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="js/classie.js"></script>
 <script src="js/uisearch.js"></script>
+<script src="js/poll.js"></script>
 <script>
     new UISearch( document.getElementById( 'sb-search' ) );
 </script>

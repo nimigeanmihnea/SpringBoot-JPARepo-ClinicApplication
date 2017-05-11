@@ -3,17 +3,22 @@ package application.controller;
 import application.entity.Consult;
 import application.entity.Doctor;
 import application.entity.Patient;
+import application.entity.User;
 import application.repository.ConsultRepository;
 import application.repository.DoctorRepository;
 import application.repository.PatientRepository;
+import application.repository.UserRepository;
 import application.validator.DoctorValidator;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.websocket.server.PathParam;
 import java.text.DateFormat;
@@ -38,6 +43,9 @@ public class ConsultController {
 
     @Autowired
     private ConsultRepository consultRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/secretary/patient", method = RequestMethod.GET)
     public String showPatient(){
@@ -192,5 +200,31 @@ public class ConsultController {
             consultRepository.save(consult);
             return "redirect:/home";
         }else return "redirect:/errorpage";
+    }
+
+    @RequestMapping(value = "/secretary/notify", method = RequestMethod.GET)
+    public String notify(@PathParam("param") String param){
+        long notifyId = Long.parseLong(param);
+        Consult consult = consultRepository.findOne(notifyId);
+        if(consult!=null){
+            Doctor doctor = consult.getDoctor();
+            User user = doctor.getUser();
+            user.setShouldBeNotifeid(true);
+            userRepository.save(user);
+            return "redirect:/home";
+        } else return "redirect:/errorpage";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/home/polling", method = RequestMethod.POST)
+    public Boolean polling(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user = userRepository.findByUsername(name);
+        if(user.isShouldBeNotifeid() == true) {
+            user.setShouldBeNotifeid(false);
+            userRepository.save(user);
+            return true;
+        }else return null;
     }
 }

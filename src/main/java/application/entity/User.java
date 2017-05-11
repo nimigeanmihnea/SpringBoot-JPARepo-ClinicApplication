@@ -31,12 +31,15 @@ public class User implements UserDetails{
     @Column(name = "role", nullable = false)
     private String role;
 
+    private boolean shouldBeNotifeid;
+
     public User(){}
 
-    public User(String username, String password, String role){
+    public User(String username, String password, String role, boolean shouldBeNotifeid){
         this.username = username;
         this.password = password;
         this.role = role;
+        this.shouldBeNotifeid = false;
     }
 
     @Override
@@ -92,6 +95,12 @@ public class User implements UserDetails{
     public void setRole(String role) {
         this.role = role;
     }
+    public boolean isShouldBeNotifeid() {
+        return shouldBeNotifeid;
+    }
+    public void setShouldBeNotifeid(boolean shouldBeNotifeid) {
+        this.shouldBeNotifeid = shouldBeNotifeid;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -124,4 +133,5 @@ public class User implements UserDetails{
                 ", role='" + role + '\'' +
                 '}';
     }
+
 }

@@ -27,6 +27,7 @@ public class SecureLogin extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity httpSecurity) throws  Exception {
+        httpSecurity.csrf().disable();
         httpSecurity.authorizeRequests().antMatchers("/", "/resources/**", "/templates/**", "/static/**",
                 "/css/**", "/js/**").permitAll()
                 .antMatchers("/admin/*","/admin").hasRole("ADMIN")

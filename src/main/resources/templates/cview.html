@@ -22,6 +22,7 @@
             <th class="text-left">End Date</th>
             <th sec:authorize="hasRole('ROLE_DOCTOR')" class="text-left">Details</th>
             <th sec:authorize="hasRole('ROLE_DOCTOR')" class="text-left">Update Details</th>
+            <th sec:authorize="hasRole('ROLE_SECRETARY')" class="text-left">Notify Doctor</th>
             <th sec:authorize="hasRole('ROLE_SECRETARY')" class="text-left">Update Info</th>
             <th sec:authorize="hasRole('ROLE_SECRETARY')" class="text-left">Delete Info</th>
         </tr>
@@ -36,6 +37,7 @@
             <td class="text-left" th:text="${consult.endHour}">End Hour</td>
             <td sec:authorize="hasRole('DOCTOR')" th:text="${consult.details}">Details</td>
             <td sec:authorize="hasRole('ROLE_DOCTOR')"><a th:href="@{/doctor/details(param=${consult.id})}">Update Details.</a></td>
+            <td sec:authorize="hasRole('ROLE_SECRETARY')"><a th:href="@{/secretary/notify(param=${consult.id})}">Notify Doctor.</a></td>
             <td sec:authorize="hasRole('ROLE_SECRETARY')"><a th:href="@{/secretary/cupdate(param=${consult.id})}">Update Info.</a></td>
             <td sec:authorize="hasRole('ROLE_SECRETARY')"><a th:href="@{/secretary/cdelete(param=${consult.id})}">Delete Info.</a></td>
             <!--<input type="hidden" name="book" th:value="${book}"/>-->

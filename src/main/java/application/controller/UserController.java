@@ -74,7 +74,7 @@ public class UserController {
             Integer minEnd = Integer.parseInt(request.getParameter("endHour").substring(3, 5));
             DateTime start = new DateTime(aux).withHourOfDay(hourStart).withMinuteOfHour(minStart);
             DateTime end = new DateTime(aux).withHourOfDay(hourEnd).withMinuteOfHour(minEnd);
-            User user = new User(request.getParameter("username"), encoder.encode(request.getParameter("password")), "ROLE_DOCTOR");
+            User user = new User(request.getParameter("username"), encoder.encode(request.getParameter("password")), "ROLE_DOCTOR", false);
             Doctor doctor = new Doctor(request.getParameter("name"), request.getParameter("PNC"), request.getParameter("spec"), start.toDate(), end.toDate(), user);
             userRepository.save(user);
             doctorRepository.save(doctor);
@@ -91,7 +91,7 @@ public class UserController {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (userRepository.findByUsername(request.getParameter("username")) == null &&
                 secretaryRepository.findByPnc(request.getParameter("PNC")) == null) {
-            User user = new User(request.getParameter("username"), encoder.encode(request.getParameter("password")), "ROLE_SECRETARY");
+            User user = new User(request.getParameter("username"), encoder.encode(request.getParameter("password")), "ROLE_SECRETARY",false);
             Secretary secretary = new Secretary(request.getParameter("name"), request.getParameter("PNC"), user);
             userRepository.save(user);
             secretaryRepository.save(secretary);
@@ -106,7 +106,7 @@ public class UserController {
     public String addAdmin(HttpServletRequest request){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (userRepository.findByUsername(request.getParameter("username")) == null){
-            User user = new User(request.getParameter("username"), encoder.encode(request.getParameter("password")), "ROLE_ADMIN");
+            User user = new User(request.getParameter("username"), encoder.encode(request.getParameter("password")), "ROLE_ADMIN", false);
             userRepository.save(user);
             return "redirect:/home";
         }else return "redirect:/errorpage";

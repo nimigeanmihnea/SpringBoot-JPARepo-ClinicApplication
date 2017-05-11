@@ -25,7 +25,7 @@ public class UserCredentialsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = this.userRepository.findByUsername(username);
         user.isEnabled();
-        return new User(user.getUsername(), user.getPassword(), user.getRole());
+        return new User(user.getUsername(), user.getPassword(), user.getRole(), user.isShouldBeNotifeid());
 
     }
 }
